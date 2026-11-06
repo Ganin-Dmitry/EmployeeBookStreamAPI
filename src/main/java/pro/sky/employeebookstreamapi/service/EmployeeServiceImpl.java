@@ -25,6 +25,9 @@ public class EmployeeServiceImpl implements EmployeeService {
                               int salary,
                               int department) {
         Employee employee = new Employee(firstName, middleName, lastName, salary, department);
+        if (department < 1 || department > 5) {
+            throw new IllegalArgumentException();
+        }
         if (employeeBook.containsValue(employee)) {
             throw new EmployeeAlreadyAddedException();
         }
@@ -55,7 +58,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     private boolean checkCapacityMap () {
-        return employeeBook.size() <= maxLengthMap;
+        return employeeBook.size() < maxLengthMap;
     }
 
     @Override
@@ -70,4 +73,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         return strEmployeeList;
     }
 
+    @Override
+    public Map<String, Employee> getEmployeeBook() {
+        return this.employeeBook;
+    }
 }

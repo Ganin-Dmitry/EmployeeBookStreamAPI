@@ -8,10 +8,10 @@ public class Employee {
     private final String firstName;
     private final String middleName;
     private final String lastName;
-    private int salary;
-    private int department;
+    private Integer salary;
+    private Integer department;
 
-    private final Map<Integer, String> departmentMap = Map.of(
+    private static final Map<Integer, String> departmentMap = Map.of(
             1, "Отдел управления",
             2, "Отдел маркетинга",
             3, "Отдел разработки",
@@ -38,11 +38,11 @@ public class Employee {
         return this.firstName + this.middleName + this.lastName;
     }
 
-    public int getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public int getDepartment() {
+    public Integer getDepartment() {
         return department;
     }
 
@@ -71,5 +71,9 @@ public class Employee {
         return "Ф.И.О.: " + this.getFullName() + "<br>" +
                 "ЗП: " + this.salary + "<br>" +
                 "Отдел: " + departmentMap.get(this.department) + "<br>";
+    }
+
+    public static String getDepartmentById (Integer departmentId) {
+        return departmentMap.get(departmentId);
     }
 }
