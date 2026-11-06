@@ -32,6 +32,8 @@ public class EmployeeController {
             return "Данный сотрудник уже добавлен!";
         } catch (EmployeeStorageIsFullException e) {
             return "Достигнут лимит сотрудников в хранилище!";
+        } catch (IllegalArgumentException e) {
+            return "Неверно указан ID отдела";
         } catch (Exception e) {
             return "Попробуйте позже.";
         }
@@ -50,6 +52,7 @@ public class EmployeeController {
             return "Попробуйте позже.";
         }
     }
+
     @GetMapping(path = "/find")
     public String find (@RequestParam (required = false) String fullName) {
         if (fullName.isBlank()) {
@@ -63,6 +66,7 @@ public class EmployeeController {
             return "Попробуйте позже.";
         }
     }
+
     @GetMapping
     public String printEmployeeList () {
         try {
